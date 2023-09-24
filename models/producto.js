@@ -11,11 +11,6 @@ const ProductoSchema = Schema({
         default: true,
         required: true
     },
-    usuario: {
-        type: Schema.Types.ObjectId,
-        ref: 'Usuario',
-        required: true
-    },
     precio: {
         type: Number,
         default: 0
@@ -25,9 +20,16 @@ const ProductoSchema = Schema({
         ref: 'Categoria',
         required: true
     },
+    colores: [{
+        type: String,
+        required: true
+    }],
     descripcion: { type: String },
     disponible: { type: Boolean, defult: true },
-    imagen: { type: String },
+    imagenes: [{
+        url: { type: String },
+        posicion: { type: Number }
+    }],
 });
 
 
