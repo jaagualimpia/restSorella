@@ -35,7 +35,7 @@ const obtenerProducto = async(req, res = response ) => {
 
 const crearProducto = async(req, res = response ) => {
 
-    const { estado, ...body } = req.body;
+    const { estado, usuario, ...body } = req.body;
 
     const productoDB = await Producto.findOne({ nombre: body.nombre });
 
@@ -48,7 +48,8 @@ const crearProducto = async(req, res = response ) => {
     // Generar la data a guardar
     const data = {
         ...body,
-        nombre: body.nombre.toUpperCase()
+        nombre: body.nombre.toUpperCase(),
+        usuario: req.usuario._id
     }
 
     const producto = new Producto( data );

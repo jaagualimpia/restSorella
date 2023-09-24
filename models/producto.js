@@ -15,6 +15,11 @@ const ProductoSchema = Schema({
         type: Number,
         default: 0
     },
+    usuario: {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+        required: true
+    },
     categoria: {
         type: Schema.Types.ObjectId,
         ref: 'Categoria',
