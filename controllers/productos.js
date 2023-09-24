@@ -49,7 +49,7 @@ const crearProducto = async(req, res = response ) => {
     const data = {
         ...body,
         nombre: body.nombre.toUpperCase(),
-        usuario: req.usuario._id
+        usuario: usuario._id
     }
 
     const producto = new Producto( data );
