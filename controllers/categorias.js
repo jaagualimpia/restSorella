@@ -47,8 +47,7 @@ const crearCategoria = async(req, res = response ) => {
 
     // Generar la data a guardar
     const data = {
-        nombre,
-        usuario: req.usuario._id
+        nombre
     }
 
     const categoria = new Categoria( data );
