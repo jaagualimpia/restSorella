@@ -1,6 +1,5 @@
 const { response } = require("express");
 
-//const { Usuario} = require("../models/usuario");
 const Usuario = require("../models/usuario");
 
 const bcryptjs = require("bcryptjs");
@@ -8,27 +7,17 @@ const { generarJWT } = require("../helpers/generar-jwt");
 const { googleVerify } = require("../helpers/google-verify");
 
 const login = async (req, res = response) => {
-  const { correo, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const usuario = await Usuario.findOne({ correo });
-    console.log(usuario);
+    const usuario = await Usuario.findOne({ email });
+    console.log(usuario, email);
     if (!usuario) {
       return res
         .status(400)
         .json({
           ok: false,
-          msg: "Usuario / Password no son correctos - correo: " + correo,
-        });
-    }
-
-    // Verificar si el usuario esta activo
-    if (!usuario.estado) {
-      return res
-        .status(400)
-        .json({
-          ok: false,
-          msg: "Usuario / Password no son correctos - estado: false",
+          msg: "Usuario / Password no son correctos - correo: " + email,
         });
     }
 

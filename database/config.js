@@ -4,7 +4,7 @@ const dbConnection = async() => {
 
     try {
 
-        await mongoose.connect(process.env.MONGODB_CNN,{
+        await mongoose.connect(process.env.MONGODB_CNN1,{
             useNewUrlParser: true,
             useUnifiedTopology: true
             //useCreateIndex: true,
