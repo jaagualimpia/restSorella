@@ -4,7 +4,8 @@ const Usuario = require('../models/usuario')
 
 
 const validarJWT = async (req = request, res = response, next) => {
-    const token = req.header('x-token');
+    const token = req.header('token');
+    let usuario;
 
     if (!token) {
         return res.status(401).json({
@@ -17,7 +18,8 @@ const validarJWT = async (req = request, res = response, next) => {
         const {uid} = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
 
         //console.log(uid);
-        const usuario = await Usuario.findById(uid)
+        usuario = await getUsuarioById(uid);
+        usuario = usuarioToOBject(usuario);
 
         if(!usuario){
             return res.status(401).json({
@@ -49,6 +51,15 @@ const validarJWT = async (req = request, res = response, next) => {
     //console.log(token);
 
     //next();
+}
+
+async function getUsuarioById(id) {
+    const usuario = await Usuario.findById(id)
+    return usuario;
+}
+
+function usuarioToOBject(usuario) {
+    return JSON.parse(JSON.stringify(usuario));
 }
 
 
