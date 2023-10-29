@@ -35,6 +35,7 @@ const crearCategoria = async(req, res = response ) => {
 
     //Pasa a mayuscula el dato de la categoria
     const nombre = req.body.nombre.toUpperCase();
+    const categoriaJSON = req.body;
 
     //Verifica si la categoria existe
     const categoriaDB = await Categoria.findOne({ nombre });
@@ -45,12 +46,8 @@ const crearCategoria = async(req, res = response ) => {
         });
     }
 
-    // Generar la data a guardar
-    const data = {
-        nombre
-    }
 
-    const categoria = new Categoria( data );
+    const categoria = new Categoria( categoriaJSON );
 
     // Guardar DB
     await categoria.save();
